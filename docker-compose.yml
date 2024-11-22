@@ -1,0 +1,16 @@
+version: '3'
+services:
+  ftp-server:
+    image: stilliard/pure-ftpd
+    container_name: pure-ftpd
+    ports:
+      - "21:21"
+      - "30000-30009:30000-30009"
+    environment:
+      FTP_USER_NAME: "usuario"
+      FTP_USER_PASS: "contraseña"
+      FTP_USER_HOME: "/home/usuario"
+    volumes:
+      - ./data:/home/usuario
+      - ./passwd:/etc/pure-ftpd/passwd
+    restart: always
